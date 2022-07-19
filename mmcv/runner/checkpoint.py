@@ -625,6 +625,12 @@ def load_checkpoint(
         dict or OrderedDict: The loaded checkpoint.
     """
     checkpoint = _load_checkpoint(filename, map_location, logger)
+    
+    ## check if voxelnet than change the middle layer weight orders
+    if 'VoxelNet' in checkpoint.get('meta', {})['config']:
+        checkpoint = reconfig_middle_layer_second_mode(checkpoint)
+
+    
     # OrderedDict is a subclass of dict
     if not isinstance(checkpoint, dict):
         raise RuntimeError(
@@ -808,3 +814,67 @@ def save_checkpoint(model: torch.nn.Module,
         with io.BytesIO() as f:
             torch.save(checkpoint, f)
             file_client.put(f.getvalue(), filename)
+
+
+
+def reconfig_middle_layer_second_mode(checkpoint: dict):
+    checkpoint['state_dict']['middle_encoder.conv_input.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.conv_input.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.conv_input.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.conv_input.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.conv_input.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.conv_input.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.conv_input.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.conv_input.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer1.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer1.0.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer1.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer1.0.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer1.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer1.0.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer1.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer1.0.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.0.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.0.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.0.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.0.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.1.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.1.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.1.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.1.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.2.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.2.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.2.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer2.2.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.0.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.0.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.0.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.0.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.1.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.1.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.1.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.1.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.2.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.2.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.2.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer3.2.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.0.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.0.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.0.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.0.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.0.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.1.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.1.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.1.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.1.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.1.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.2.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.2.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.2.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.2.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.encoder_layers.encoder_layer4.2.0.weight'],3,4)
+
+    checkpoint['state_dict']['middle_encoder.conv_out.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.conv_out.0.weight'],0,1)
+    checkpoint['state_dict']['middle_encoder.conv_out.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.conv_out.0.weight'],1,2)
+    checkpoint['state_dict']['middle_encoder.conv_out.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.conv_out.0.weight'],2,3)
+    checkpoint['state_dict']['middle_encoder.conv_out.0.weight'] = torch.transpose(checkpoint['state_dict']['middle_encoder.conv_out.0.weight'],3,4)
+    return checkpoint
