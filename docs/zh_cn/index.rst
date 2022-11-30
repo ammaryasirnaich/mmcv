@@ -10,6 +10,7 @@
    get_started/introduction.md
    get_started/installation.md
    get_started/build.md
+   get_started/article.md
 
 .. toctree::
    :maxdepth: 2
@@ -58,6 +59,7 @@
 
    community/contributing.md
    community/pr.md
+   community/code_style.md
 
 .. toctree::
    :maxdepth: 2
