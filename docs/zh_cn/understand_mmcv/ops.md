@@ -6,8 +6,8 @@ MMCV 提供了检测、分割等任务中常用的算子
 | ---------------------------- | --- | ---- | --- | --- | ------ |
 | ActiveRotatedFilter          | √   | √    |     |     |        |
 | AssignScoreWithK             |     | √    |     |     |        |
-| BallQuery                    |     | √    |     |     |        |
-| BBoxOverlaps                 |     | √    | √   | √   |        |
+| BallQuery                    |     | √    | √   |     |        |
+| BBoxOverlaps                 |     | √    | √   | √   | √      |
 | BorderAlign                  |     | √    |     |     |        |
 | BoxIouRotated                | √   | √    |     |     |        |
 | BoxIouQuadri                 | √   | √    |     |     |        |
@@ -18,14 +18,14 @@ MMCV 提供了检测、分割等任务中常用的算子
 | ConvexIoU                    |     | √    |     |     |        |
 | CornerPool                   |     | √    |     |     |        |
 | Correlation                  |     | √    |     |     |        |
-| Deformable Convolution v1/v2 | √   | √    |     |     | √      |
+| Deformable Convolution v1/v2 | √   | √    | √   |     | √      |
 | Deformable RoIPool           |     | √    | √   |     | √      |
 | DiffIoURotated               |     | √    |     |     |        |
 | DynamicScatter               |     | √    |     |     |        |
 | FurthestPointSample          |     | √    |     |     |        |
 | FurthestPointSampleWithDist  |     | √    |     |     |        |
 | FusedBiasLeakyrelu           |     | √    |     |     | √      |
-| GatherPoints                 |     | √    |     |     |        |
+| GatherPoints                 |     | √    |     |     | √      |
 | GroupPoints                  |     | √    |     |     |        |
 | Iou3d                        |     | √    | √   |     |        |
 | KNN                          |     | √    |     |     |        |
@@ -35,28 +35,28 @@ MMCV 提供了检测、分割等任务中常用的算子
 | ModulatedDeformConv2d        | √   | √    | √   |     | √      |
 | MultiScaleDeformableAttn     |     | √    | √   |     |        |
 | NMS                          | √   | √    | √   |     | √      |
-| NMSRotated                   | √   | √    |     |     |        |
+| NMSRotated                   | √   | √    | √   |     | √      |
 | NMSQuadri                    | √   | √    |     |     |        |
 | PixelGroup                   | √   |      |     |     |        |
 | PointsInBoxes                | √   | √    |     |     |        |
 | PointsInPolygons             |     | √    |     |     |        |
-| PSAMask                      | √   | √    | √   |     |        |
+| PSAMask                      | √   | √    | √   |     | √      |
 | RotatedFeatureAlign          | √   | √    |     |     |        |
 | RoIPointPool3d               |     | √    | √   |     |        |
-| RoIPool                      |     | √    | √   |     |        |
+| RoIPool                      |     | √    | √   |     | √      |
 | RoIAlignRotated              | √   | √    | √   |     |        |
 | RiRoIAlignRotated            |     | √    |     |     |        |
-| RoIAlign                     | √   | √    | √   |     |        |
+| RoIAlign                     | √   | √    | √   |     | √      |
 | RoIAwarePool3d               |     | √    | √   |     |        |
 | SAConv2d                     |     | √    |     |     |        |
 | SigmoidFocalLoss             |     | √    | √   |     | √      |
 | SoftmaxFocalLoss             |     | √    |     |     | √      |
 | SoftNMS                      |     | √    |     |     |        |
-| Sparse Convolution           |     | √    |     |     |        |
+| Sparse Convolution           |     | √    | √   |     |        |
 | Synchronized BatchNorm       |     | √    |     |     |        |
 | ThreeInterpolate             |     | √    |     |     |        |
 | ThreeNN                      |     | √    | √   |     |        |
 | TINShift                     |     | √    | √   |     |        |
 | UpFirDn2d                    |     | √    |     |     |        |
-| Voxelization                 | √   | √    |     |     |        |
+| Voxelization                 | √   | √    | √   |     | √      |
 | PrRoIPool                    |     | √    |     |     |        |
